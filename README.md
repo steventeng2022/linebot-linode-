@@ -8,6 +8,8 @@
 - `lineb.service`：systemd 常駐服務
 - `nginx-bot.steventeng.uk.conf`：Nginx 反向代理與登入限速
 
+部署腳本偵測到既有 Nginx 設定時會保留它，避免覆蓋 Certbot 已建立的 HTTPS 憑證設定。
+
 ## 部署
 
 ```bash

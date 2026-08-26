@@ -40,7 +40,11 @@ if [[ ! -f /etc/lineb/lineb.env ]]; then
 fi
 
 install -o root -g root -m 644 "$(dirname "$0")/lineb.service" /etc/systemd/system/lineb.service
-install -o root -g root -m 644 "$(dirname "$0")/nginx-bot.steventeng.uk.conf" /etc/nginx/sites-available/lineb
+if [[ ! -f /etc/nginx/sites-available/lineb ]]; then
+  install -o root -g root -m 644 "$(dirname "$0")/nginx-bot.steventeng.uk.conf" /etc/nginx/sites-available/lineb
+else
+  echo "保留既有 Nginx／Certbot HTTPS 設定。"
+fi
 ln -sfn /etc/nginx/sites-available/lineb /etc/nginx/sites-enabled/lineb
 
 systemctl daemon-reload
