@@ -1,0 +1,25 @@
+[Unit]
+Description=116 LINE Bot and Admin Dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=lineb
+Group=lineb
+WorkingDirectory=/opt/lineb
+EnvironmentFile=/etc/lineb/lineb.env
+ExecStart=/opt/lineb/.venv/bin/uvicorn main:app --host 127.0.0.1 --port 8000 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/lineb
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target
