@@ -1,5 +1,5 @@
 [Unit]
-Description=116 LINE Bot and Admin Dashboard
+Description=社群小幫手 LINE Bot and Admin Dashboard
 After=network-online.target
 Wants=network-online.target
 
